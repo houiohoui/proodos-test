@@ -67,8 +67,9 @@
 
   /* ===== マイルストーン ===== */
   .ms-row{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0;}
-  .ms-card{flex:1 1 180px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px;}
-  .ms-card.anchor{border-color:var(--teal-l);box-shadow:inset 3px 0 0 var(--teal);}
+  .ms-card{position:relative;flex:1 1 180px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px;}
+  .ms-card.anchor{border-color:var(--teal);box-shadow:inset 0 3px 0 var(--teal);}
+  .ms-anchor-tag{position:absolute;top:-9px;left:10px;font-size:10px;font-weight:700;color:#fff;background:var(--teal);border-radius:9px;padding:1px 8px;}
   .ms-label{font-size:12px;color:var(--ink-2);}
   .ms-date{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums;margin-top:2px;}
   .ms-sub{font-size:12px;margin-top:2px;}
@@ -191,7 +192,7 @@
   .splitter:hover::before{background:var(--teal-l);}
   .on-btn{background:var(--teal)!important;color:#fff!important;border-color:var(--teal)!important;}
 
-  .time-panel{position:sticky;top:92px;border:1px solid var(--line);border-radius:8px;padding:14px;background:#fff;}
+  .time-panel{position:sticky;top:92px;border:1px solid var(--line);border-radius:8px;padding:14px;background:#fff;max-height:calc(100vh - 110px);overflow-y:auto;overscroll-behavior:contain;}
   .time-head{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
   .time-head strong{font-size:14px;}
   .time-head .spacer{flex:1;}
@@ -401,6 +402,64 @@
   .bird-char svg,.bird-char .bird-img{display:block;image-rendering:pixelated;width:88px;height:auto;}
   @keyframes birdBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
 
+  /* 期日変更・問い合わせ生成 */
+  .ie-off{width:54px;font-family:inherit;font-size:12.5px;padding:4px 6px;border:1px solid var(--line);border-radius:6px;}
+  .inquiry-out{margin-top:6px;}
+  .inq-text{width:100%;min-height:96px;font-family:inherit;font-size:12px;line-height:1.6;padding:8px;border:1px solid var(--teal-l);border-radius:7px;background:#f3fafa;resize:vertical;}
+
+  /* 案件サイドバー（左）と付箋タブ */
+  .sidebar-tab{position:fixed;left:0;top:auto;bottom:180px;z-index:60;background:var(--orange);color:#fff;border:none;border-radius:0 10px 10px 0;padding:10px 6px;font-size:11px;font-weight:700;line-height:1.3;cursor:pointer;box-shadow:2px 2px 6px rgba(0,0,0,.18);writing-mode:horizontal-tb;}
+  .sidebar-tab:hover{background:#d98e2f;}
+  .case-sidebar{position:fixed;left:0;top:0;bottom:0;width:280px;max-width:86vw;z-index:65;background:#fff;border-right:1px solid var(--line);box-shadow:4px 0 18px rgba(11,63,69,.16);padding:14px;overflow-y:auto;transform:translateX(-105%);transition:transform .22s ease;}
+  .case-sidebar.open{transform:translateX(0);}
+  .cs-head{display:flex;align-items:center;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:10px;}
+  .cs-row{display:flex;align-items:center;gap:6px;margin:4px 0;}
+  .cs-name{flex:1;text-align:left;border:1px solid var(--line);border-radius:8px;background:#fff;padding:9px 10px;font-size:12.5px;font-family:inherit;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .cs-row.cur .cs-name{background:var(--teal);color:#fff;border-color:var(--teal);font-weight:700;}
+  .cs-row:hover .cs-name{border-color:var(--teal-l);}
+  .cs-arch{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 8px;cursor:pointer;font-size:12px;}
+  .cs-sub{font-size:11px;color:var(--ink-2);font-weight:700;margin:12px 0 4px;}
+  .cs-row.arch .cs-name{cursor:default;border:none;padding:7px 4px;font-size:12px;}
+  .cs-new{display:flex;flex-direction:column;gap:6px;margin-top:12px;padding-top:10px;border-top:1px solid var(--line);}
+  .cs-new select,.cs-new input{font-family:inherit;font-size:12.5px;padding:7px 8px;border:1px solid var(--line);border-radius:7px;}
+
+  /* モーダル・案件終了レポート */
+  .app-modal{position:fixed;inset:0;z-index:95;background:rgba(11,63,69,.34);display:flex;align-items:center;justify-content:center;padding:20px;}
+  .app-modal[hidden]{display:none;}
+  .modal-box{background:#fff;border-radius:14px;box-shadow:0 16px 44px rgba(11,63,69,.32);padding:18px 20px;max-width:460px;width:100%;max-height:86vh;overflow-y:auto;}
+  .report-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:6px 0 4px;}
+  .rep-cell{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 6px;text-align:center;}
+  .rep-num{font-size:26px;font-weight:800;color:var(--teal);font-variant-numeric:tabular-nums;line-height:1.1;}
+  .rep-num span{font-size:13px;font-weight:700;margin-left:1px;}
+  .rep-lab{font-size:11px;color:var(--ink-2);margin-top:2px;}
+  .rep-rank{margin:4px 0;padding-left:4px;list-style:none;font-size:12.5px;line-height:1.9;}
+  .rep-rank li{border-bottom:1px dotted var(--line);padding:2px 0;}
+
+  /* ===== スマホ対応（#8）===== */
+  @media (max-width:680px){
+    .wrap{padding:0 10px 90px;}
+    .wrap.split{flex-direction:column;max-width:100%;gap:0;}
+    .wrap.split #boardCol,.wrap.split #timeCol{flex:1 1 auto!important;width:100%;}
+    .splitter{display:none!important;}
+    .time-panel{position:static;max-height:none;margin-top:12px;}
+    .topbar{gap:5px;padding:8px 10px;}
+    .topbar .lab{display:none;}
+    .idx-tab{padding:6px 9px;font-size:11px;}
+    .theme-sel{font-size:11px;max-width:130px;}
+    .ms-row{gap:8px;}
+    .ms-card{flex:1 1 100%;}
+    .case-title{font-size:16px;}
+    .case-sidebar{width:86vw;}
+    .sidebar-tab{top:auto;bottom:150px;}
+    .help-panel{width:calc(100vw - 24px);right:12px;bottom:70px;}
+    .help-fab{right:12px;bottom:12px;}
+    .bird-char{width:62px;height:62px;left:6px;bottom:6px;}
+    .bird-char svg,.bird-char .bird-img{width:54px;}
+    .report-grid{grid-template-columns:repeat(3,1fr);}
+    .addrow,.add-block,.add-span{gap:5px;}
+    .gwrap.vertical{max-height:64vh;}
+  }
+
   /* 初回チュートリアル（コーチマーク） */
   .coach-backdrop{position:fixed;inset:0;z-index:85;background:rgba(11,63,69,.18);display:none;}
   .coach-backdrop.show{display:block;}
@@ -420,6 +479,9 @@
 </style>
 </head>
 <body>
+<div id="caseSidebar" class="case-sidebar"></div>
+<button id="sidebarTab" class="sidebar-tab" data-action="toggle-sidebar" title="案件バーを開閉">📁<br>案<br>件</button>
+<div id="appModal" class="app-modal" hidden></div>
 <div id="topbar" class="topbar"></div>
 <div class="sticky" id="stickyBar"></div>
 <div class="wrap" id="wrap">
@@ -497,6 +559,7 @@ const app = {
   memoOpen: false,     // メモ・テンプレート管理タブの表示
   memoTab: 'time',     // メモ管理の表示タブ 'time'|'span'
   starFilter: false,   // ★お気に入りタスクだけ表示
+  sidebarOpen: false,  // 左の案件サイドバー
   view: 'active',      // 'active' | 'archived'（タブ切替・保存はしない）
   timeMode: false,     // 時間管理（左右分割）の表示
   calOffset: 0,        // カレンダーの週送り
@@ -908,7 +971,11 @@ function renderSettings(){
         <div class="section-label">案件の管理</div>
         <div class="editrow">
           <button data-action="archive-case" class="sm">🗄 この案件を終了してアーカイブ</button>
-          <span class="muted">案件まるごとを一覧から片付ける（あとで復元できる）</span>
+          <span class="muted">終了レポート（停滞・不足情報）を出して片付ける。復元も可</span>
+        </div>
+        <div class="editrow">
+          <button data-action="reuse-case" class="sm">🔁 再利用テンプレ化（チェックを空で複製）</button>
+          <span class="muted">構成はそのまま、進捗・チェックを空にした新しい案件を作る</span>
         </div>
         ${archivedCasesHtml()}
       </div>
@@ -1314,7 +1381,7 @@ function renderMilestones(){
   document.getElementById('msRow').innerHTML = c.milestones.map(m => {
     const isAnchor = m.id === c.anchor;
     if(!m.date){
-      return `<div class="ms-card ${isAnchor?'anchor':''}" draggable="true" data-ms="${m.id}"><div class="ms-label">⠿ ${escapeHtml(m.label)}</div>
+      return `<div class="ms-card ${isAnchor?'anchor':''}" draggable="true" data-ms="${m.id}">${isAnchor?'<div class="ms-anchor-tag">🎯 基準日</div>':''}<div class="ms-label">⠿ ${escapeHtml(m.label)}</div>
         <div class="ms-date">未定</div><div class="ms-sub tbd">日付が未確定です</div></div>`;
     }
     const d = parseDate(m.date);
@@ -1324,6 +1391,7 @@ function renderMilestones(){
     else if(left === 0){ cls='danger'; sub = '本日'; }
     else { if(left<=3) cls='warn'; sub = `あと ${left}日`; }
     return `<div class="ms-card ${isAnchor?'anchor':''}" draggable="true" data-ms="${m.id}">
+      ${isAnchor?'<div class="ms-anchor-tag">🎯 基準日</div>':''}
       <div class="ms-label">⠿ ${escapeHtml(m.label)}</div>
       <div class="ms-date">${d.getFullYear()}/${fmtMd(d)}</div>
       <div class="ms-sub ${cls}">${sub}</div>
@@ -1492,7 +1560,16 @@ function itemRowHtml(it, track, cur){
         <input type="number" min="0" max="100" class="ie-prog" data-change="item-progress" data-id="${it.id}" value="${prog}"> %
         <div class="iprog big"><div class="iprog-fill" style="width:${prog}%"></div></div>
       </div>
+      <div class="ie-row">
+        <label class="ie-lab">期日</label>
+        <input type="number" class="ie-off" value="${it.offset_days}"> 日前
+        <button class="sm" data-action="item-deadline" data-item="${it.id}" title="期日変更（理由が必要）">変更</button>
+      </div>
       <textarea class="ie-memo" data-change="item-memo" data-id="${it.id}" placeholder="メモ（自由記入・改行OK）…">${escapeHtml(it.memo||'')}</textarea>
+      <div class="ie-row" style="margin-top:6px">
+        <button class="sm" data-action="item-inquiry" data-item="${it.id}">✉ 問い合わせ文を生成</button>
+      </div>
+      <div class="inquiry-out" id="inq-${it.id}"></div>
     </div>` : '';
 
   return `<div class="item-row ${isDone?'done':''} ${open?'expanded':''}" data-item="${it.id}" ${colorAttr}>
@@ -1598,6 +1675,7 @@ function detailHtml(track){
 
 function renderAll(){
   rebuildIndex();
+  renderSidebar();
   renderTopbar();
   renderSticky();
   renderSettings();
@@ -1678,6 +1756,42 @@ function renameItem(itemId){
   renderAll();
 }
 
+// 小タスクの期日（◯日前）を変更。理由（コメント）必須・履歴に追記
+function changeItemDeadline(itemId, btn){
+  const it = itemIndex[itemId];
+  if(!it) return;
+  const inp = btn.closest('.ie-row').querySelector('.ie-off');
+  let v = parseInt(inp.value, 10);
+  if(isNaN(v) || v < 0){ inp.focus(); return; }
+  if(v === it.offset_days) return;
+  const reason = prompt(`期日を「${it.offset_days}日前」→「${v}日前」に変更します。\nコメント（理由）を入力してください（必須・空ならキャンセル）：`);
+  if(reason === null || !reason.trim()) return;
+  const track = CC().tracks.find(t => t.items.includes(it));
+  app.changeHistory.push({ caseId:app.currentCaseId, trackId:track.id, itemTitle:it.title,
+    from:`期日 ${it.offset_days}日前`, to:`${v}日前`, reason:reason.trim(), ts:new Date().toLocaleString('ja-JP',{hour12:false}) });
+  it.offset_days = v;
+  renderAll();
+}
+
+// 問い合わせテンプレ生成：小タスク名から丁寧な依頼文を組み立てる
+function inquiryText(it){
+  let topic = it.title.trim();
+  // 末尾の動作語を落として「件名」を抽出
+  topic = topic.replace(/(の)?(取得|入手|受領|確認|連絡|手配|提出|送付|送信|準備|調整|登録|発行|手続き?|依頼)$/,'').replace(/[（(].*?[)）]/g,'').trim();
+  const owner = party(it.owner).name;
+  let body;
+  if(/取得|入手|受領|確認|連絡先/.test(it.title) || it.type === 'information'){
+    body = `${topic}について、ご教示いただけますでしょうか。`;
+  } else if(/提出|送付|送信/.test(it.title)){
+    body = `${topic}について、提出させていただきたくご連絡いたしました。送付先・期限をご教示いただけますでしょうか。`;
+  } else if(/手配|調整|予約/.test(it.title)){
+    body = `${topic}の手配について、可能な日程・段取りをご相談させていただけますでしょうか。`;
+  } else {
+    body = `${topic}について、現在の状況をご確認のうえご教示いただけますでしょうか。`;
+  }
+  return `${owner} ご担当者様\n\nお世話になっております。\n${body}\nお手数をおかけしますが、何卒よろしくお願いいたします。`;
+}
+
 // 小タスク内の細分化（微細タスク）追加・トグル・削除
 function addSub(itemId){
   const it = itemIndex[itemId];
@@ -1733,6 +1847,113 @@ function addCaseFromTemplate(){
   renderAll();
 }
 
+/* ---- モーダル ---- */
+function showModal(html){
+  const m = document.getElementById('appModal');
+  m.innerHTML = `<div class="modal-box">${html}<div style="text-align:right;margin-top:12px"><button class="sm primary" data-action="modal-close">閉じる</button></div></div>`;
+  m.hidden = false;
+}
+function closeModal(){ const m = document.getElementById('appModal'); m.hidden = true; m.innerHTML = ''; }
+
+/* ---- 案件終了レポート（#5） ---- */
+function caseReport(c){
+  const items = c.tracks.flatMap(t => t.items.map(it => ({ it, t })));
+  const waiting = items.filter(x => x.it.status === 'WAITING');
+  let maxStall = 0;
+  const ranking = waiting.map(x => {
+    const days = x.it.waiting_since ? daysBetween(TODAY, parseDate(x.it.waiting_since)) : 0;
+    if(days > maxStall) maxStall = days;
+    return { title:x.it.title, track:x.t.name, owner:party(x.it.owner).name, days };
+  }).sort((a,b) => b.days - a.days);
+  const missingInfo = items.filter(x => x.it.type === 'information' && x.it.status !== 'DONE').length;
+  return { stallCount: waiting.length, maxStall, ranking, missingInfo };
+}
+function showCaseReport(c){
+  const r = caseReport(c);
+  const rank = r.ranking.length
+    ? r.ranking.slice(0,5).map((x,i) => `<li><b>${i+1}.</b> ${escapeHtml(x.title)} <span class="muted">（${escapeHtml(x.track)}／窓口 ${escapeHtml(x.owner)}）</span> — <b>${x.days}日</b></li>`).join('')
+    : '<li class="muted">停滞はありませんでした 🎉</li>';
+  showModal(`
+    <div class="section-label">📋 案件終了レポート — ${escapeHtml(c.title)}</div>
+    <div class="report-grid">
+      <div class="rep-cell"><div class="rep-num">${r.stallCount}</div><div class="rep-lab">停滞した件数</div></div>
+      <div class="rep-cell"><div class="rep-num">${r.maxStall}<span>日</span></div><div class="rep-lab">最大停滞日数</div></div>
+      <div class="rep-cell"><div class="rep-num">${r.missingInfo}</div><div class="rep-lab">不足情報の件数</div></div>
+    </div>
+    <div class="section-label">停滞の原因ランキング（日数）</div>
+    <ol class="rep-rank">${rank}</ol>
+    <p class="muted" style="font-size:11.5px">「次回はどこで詰まりやすいか」が見えるね。アーカイブしても履歴は残るよ。</p>`);
+}
+
+/* ---- 再利用テンプレ化：チェックを空にして複製（#6） ---- */
+function cloneCaseFresh(){
+  const c = JSON.parse(JSON.stringify(CC()));
+  c.id = app.seqCase++;
+  c.title = CC().title + '（再利用）';
+  c.archived = false;
+  const msMap = {}; c.milestones.forEach(m => { const nid='m'+(app.seqMs++); msMap[m.id]=nid; m.id=nid; });
+  c.anchor = msMap[c.anchor] || (c.milestones[0] && c.milestones[0].id) || null;
+  const pMap = {}; c.parties.forEach(p => { const nid='p'+(app.seqParty++); pMap[p.id]=nid; p.id=nid; });
+  c.tracks.forEach(t => {
+    t.id = 't'+(app.seqTrack++); t.milestone = msMap[t.milestone] || c.anchor; t.archived = false;
+    const itMap = {};
+    t.items.forEach(it => { const nid='i'+(app.seqItem++); itMap[it.id]=nid; it.id=nid; });
+    t.items.forEach(it => {
+      if(it.owner) it.owner = pMap[it.owner] || it.owner;
+      if(it.depends_on) it.depends_on = it.depends_on.map(d => itMap[d]).filter(Boolean);
+      it.status = 'TODO'; it.progress = 0;                 // チェックを空に・進捗リセット
+      delete it._prevStatus; delete it.waiting_since;
+      if(it.subs) it.subs.forEach(s => { s.id='sub'+(app.seqItem++); s.done = false; });
+    });
+  });
+  c.schedule = {}; c.memoBank = [];                         // 予定・履歴は引き継がない
+  c.spans = (c.spans||[]).map(s => ({ ...s, id:'spn'+(app.seqItem++) }));
+  app.cases.push(c);
+  app.currentCaseId = c.id;
+  app.settingsOpen = false; openTrackId = null;
+  renderAll();
+}
+
+/* ---- 案件アーカイブ（id指定・終了レポート付き） ---- */
+function archiveCaseById(id){
+  const cc = app.cases.find(x => String(x.id) === String(id));
+  if(!cc) return;
+  if(app.cases.filter(x => !x.archived).length <= 1){ alert('最後の案件はアーカイブできないよ。先に別の案件を作ってね。'); return; }
+  showCaseReport(cc);                  // 終了レポートを表示
+  cc.archived = true;
+  if(app.currentCaseId === cc.id) app.currentCaseId = app.cases.find(x => !x.archived).id;
+  app.settingsOpen = false; openTrackId = null;
+  renderAll();
+}
+
+/* ---- 左の案件サイドバー（#7） ---- */
+function renderSidebar(){
+  const sb = document.getElementById('caseSidebar');
+  sb.classList.toggle('open', !!app.sidebarOpen);
+  if(!app.sidebarOpen){ sb.innerHTML = ''; return; }
+  const active = app.cases.filter(c => !c.archived);
+  const archived = app.cases.filter(c => c.archived);
+  const list = active.map(c => `<div class="cs-row ${c.id===app.currentCaseId?'cur':''}">
+      <button class="cs-name" data-action="sidebar-switch" data-id="${c.id}">${escapeHtml(c.title)}</button>
+      <button class="cs-arch" data-action="archive-case-side" data-id="${c.id}" title="この案件を終了してアーカイブ">🗄</button>
+    </div>`).join('');
+  const tpl = Object.keys(TEMPLATES).map(k => `<option value="${k}">${TEMPLATES[k].label}</option>`).join('');
+  const archList = archived.length
+    ? `<div class="cs-sub">アーカイブ済み</div>` + archived.map(c => `<div class="cs-row arch">
+        <span class="cs-name muted">🗄 ${escapeHtml(c.title)}</span>
+        <button class="cs-arch" data-action="restore-case" data-id="${c.id}" title="復元">↩</button></div>`).join('')
+    : '';
+  sb.innerHTML = `
+    <div class="cs-head">📁 案件 <button class="sm ghost" data-action="toggle-sidebar" style="margin-left:auto">✕</button></div>
+    <div class="cs-list">${list}</div>
+    <div class="cs-new">
+      <select id="tpl-sel-side">${tpl}</select>
+      <input type="text" id="case-name-side" placeholder="案件名（任意）">
+      <button class="primary sm" data-action="add-case-side">＋ 新規案件</button>
+    </div>
+    ${archList}`;
+}
+
 function buildReport(track){
   const st = trackStatus(track);
   const bd = breakdown(track.items);
@@ -1786,6 +2007,7 @@ document.addEventListener('change', e => {
 });
 
 document.addEventListener('click', e => {
+  if(e.target.id === 'appModal'){ closeModal(); return; } // 背景クリックで閉じる
   const chk = e.target.closest('.item-check');
   if(chk){ e.stopPropagation(); toggleItem(chk.dataset.item); return; }
   // 細分化（微細タスク）チェック
@@ -1819,14 +2041,19 @@ document.addEventListener('click', e => {
       case 'toggle-memo': app.memoOpen = !app.memoOpen; renderAll(); break;
       case 'memo-tab-time': app.memoTab = 'time'; renderAll(); break;
       case 'memo-tab-span': app.memoTab = 'span'; renderAll(); break;
-      case 'archive-case': {
-        const activeCases = app.cases.filter(x => !x.archived);
-        if(activeCases.length <= 1){ alert('最後の案件はアーカイブできないよ。先に別の案件を作ってね。'); break; }
-        c.archived = true;
-        app.currentCaseId = app.cases.find(x => !x.archived).id;
-        app.settingsOpen = false; openTrackId = null; renderAll(); break;
-      }
+      case 'archive-case': archiveCaseById(c.id); break;
+      case 'reuse-case': cloneCaseFresh(); break;
       case 'restore-case': { const cc = app.cases.find(x => String(x.id) === id); if(cc) cc.archived = false; renderAll(); break; }
+      case 'toggle-sidebar': app.sidebarOpen = !app.sidebarOpen; if(app.sidebarOpen) app.timeMode = false; renderAll(); break;
+      case 'sidebar-switch': app.currentCaseId = parseInt(id,10); openTrackId = null; renderAll(); break;
+      case 'archive-case-side': archiveCaseById(id); break;
+      case 'add-case-side': {
+        const key = document.getElementById('tpl-sel-side').value;
+        const name = (document.getElementById('case-name-side').value || '').trim();
+        const cNew = instantiate(TEMPLATES[key]); if(name) cNew.title = name;
+        app.cases.push(cNew); app.currentCaseId = cNew.id; openTrackId = null; renderAll(); break;
+      }
+      case 'modal-close': closeModal(); break;
       case 'toggle-star': { const t = CC().tracks.find(x => x.id === tid); if(t) t.star = !t.star; renderAll(); break; }
       case 'toggle-star-filter': app.starFilter = !app.starFilter; renderAll(); break;
       case 'backup-close': app.backupOpen = false; renderAll(); break;
@@ -1872,7 +2099,7 @@ document.addEventListener('click', e => {
         renderAll(); break;
       }
       case 'del-party': { c.parties = c.parties.filter(p => p.id !== id); renderAll(); break; }
-      case 'toggle-time': app.timeMode = !app.timeMode; renderAll(); break;
+      case 'toggle-time': app.timeMode = !app.timeMode; if(app.timeMode) app.sidebarOpen = false; renderAll(); break;
       case 'time-close': app.timeMode = false; renderAll(); break;
       case 'cal-prev': app.calOffset -= 7; renderAll(); break;
       case 'cal-next': app.calOffset += 7; renderAll(); break;
@@ -1928,6 +2155,24 @@ document.addEventListener('click', e => {
       case 'add-track': addTrackFromForm(); break;
       case 'add-item': addItemFromForm(tid); break;
       case 'item-expand': openItemId = (openItemId === btn.dataset.item) ? null : btn.dataset.item; renderAll(); break;
+      case 'item-deadline': changeItemDeadline(btn.dataset.item, btn); break;
+      case 'item-inquiry': {
+        const it = itemIndex[btn.dataset.item];
+        if(it){
+          const txt = inquiryText(it);
+          document.getElementById('inq-'+it.id).innerHTML =
+            `<textarea class="inq-text" readonly>${escapeHtml(txt)}</textarea>
+             <button class="sm" data-action="inquiry-copy" data-item="${it.id}">📋 コピー</button>`;
+        }
+        break; // 再描画しない（生成テキストを残す）
+      }
+      case 'inquiry-copy': {
+        const ta = document.querySelector('#inq-'+btn.dataset.item+' .inq-text');
+        if(ta){ ta.select(); try{ document.execCommand('copy'); }catch(_){}
+          if(navigator.clipboard) try{ navigator.clipboard.writeText(ta.value); }catch(_){}
+          alert('コピーしたよ。メールやチャットに貼り付けてね。'); }
+        break;
+      }
       case 'rename-item': renameItem(btn.dataset.item); break;
       case 'add-sub': addSub(btn.dataset.item); break;
       case 'del-sub': {
