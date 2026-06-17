@@ -334,6 +334,73 @@
   .help-greet{position:fixed;right:74px;bottom:24px;z-index:80;background:var(--dark);color:#fff;font-size:12.5px;padding:9px 13px;border-radius:14px 14px 2px 14px;box-shadow:0 5px 16px rgba(11,63,69,.32);max-width:210px;opacity:0;transform:translateY(8px);transition:opacity .35s ease,transform .35s ease;pointer-events:none;}
   .help-greet.show{opacity:1;transform:translateY(0);pointer-events:auto;cursor:pointer;}
 
+  /* テーマ選択 */
+  .theme-sel{font-family:inherit;font-size:12px;padding:5px 6px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);}
+
+  /* 小タスク行：ドラッグ・メモ・ツール・細分化・色強調 */
+  .item-drag{cursor:grab;color:var(--ink-2);font-size:13px;user-select:none;margin-top:2px;flex:0 0 auto;}
+  .item-drag:active{cursor:grabbing;}
+  .item-memo{font-size:11px;color:var(--ink-2);margin-top:1px;}
+  .item-tools{display:flex;gap:1px;flex:0 0 auto;align-items:flex-start;margin-top:1px;}
+  .itool{border:none;background:transparent;cursor:pointer;font-size:12.5px;padding:0 2px;line-height:1.2;opacity:.7;}
+  .itool:hover{opacity:1;background:transparent;}
+  .item-row[data-color]{border-left:3px solid var(--ic);padding-left:7px;background:linear-gradient(to right,color-mix(in srgb,var(--ic) 8%,transparent),transparent 60%);}
+  .item-row[data-color] .item-title{color:var(--ic);font-weight:700;}
+  .item-row[data-color] .sub-row span{color:var(--ic);}
+  .chip.sub{background:#eef3f3;color:var(--teal);border:1px solid var(--teal-l);}
+  .sub-list{margin:6px 0 2px;padding-left:4px;border-left:2px dotted var(--line);}
+  .sub-row{display:flex;align-items:center;gap:7px;padding:3px 4px;font-size:12px;border-radius:5px;}
+  .sub-row:hover{background:var(--card);}
+  .sub-check{width:15px;height:15px;accent-color:var(--teal);cursor:pointer;}
+  .sub-row .subdone{text-decoration:line-through;color:var(--ink-2);}
+  .sub-row span{flex:1;}
+  .sub-del{border:none;background:transparent;color:var(--ink-2);cursor:pointer;font-size:13px;padding:0 2px;}
+  .sub-del:hover{color:var(--red);background:transparent;}
+  .palette-pop{display:flex;flex-wrap:wrap;gap:4px;width:100%;margin-top:6px;padding:6px;background:var(--card);border:1px solid var(--line);border-radius:8px;}
+  .palette-pop[hidden]{display:none;}
+  .swatch{width:22px;height:22px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--line);cursor:pointer;padding:0;}
+  .swatch.none{background:#fff;color:var(--ink-2);font-size:13px;line-height:1;}
+
+  /* 数値ピッカー（期日のボタン式） */
+  .numpick{position:relative;display:inline-block;}
+  .numpick-btn{min-width:34px;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:#fff;font-family:inherit;font-size:12.5px;cursor:pointer;font-variant-numeric:tabular-nums;}
+  .numpick-pop{position:absolute;top:calc(100% + 4px);left:0;z-index:30;display:flex;flex-wrap:wrap;gap:3px;width:168px;padding:6px;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 6px 18px rgba(11,63,69,.18);}
+  .numpick-pop[hidden]{display:none;}
+  .numpick-pop button{width:26px;height:26px;border:1px solid var(--line);border-radius:6px;background:#fff;font-family:inherit;font-size:12.5px;cursor:pointer;}
+  .numpick-pop button:hover{background:var(--teal);color:#fff;border-color:var(--teal);}
+  .ms-card[draggable="true"]{cursor:grab;}
+  .ms-card[draggable="true"]:active{cursor:grabbing;}
+
+  /* 小タスク：展開エディタ（進捗%＋縦長メモ）・進捗バー */
+  .item-title[data-action]{cursor:pointer;}
+  .item-title[data-action]:hover{text-decoration:underline dotted;}
+  .item-row.expanded{background:var(--card);border-radius:8px;}
+  .chip.prog{background:#eaf6f3;color:var(--teal);border:1px solid var(--teal-l);}
+  .iprog{height:6px;border-radius:4px;background:var(--line);overflow:hidden;margin:5px 0 2px;}
+  .iprog.big{flex:1;height:10px;}
+  .iprog-fill{height:100%;background:linear-gradient(to right,var(--done),var(--active));border-radius:4px;transition:width .25s ease;}
+  .item-editor{margin:8px 0 2px;padding:8px;background:#fff;border:1px solid var(--line);border-radius:8px;}
+  .ie-row{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-2);}
+  .ie-prog{width:62px;font-family:inherit;font-size:12.5px;padding:4px 6px;border:1px solid var(--line);border-radius:6px;}
+  .ie-memo{display:block;width:100%;min-height:70px;margin-top:7px;font-family:inherit;font-size:12.5px;line-height:1.6;padding:7px 8px;border:1px solid var(--line);border-radius:7px;resize:vertical;color:var(--ink);}
+
+  /* 数値ピッカー：任意入力欄 */
+  .np-free{display:flex;gap:3px;align-items:center;width:100%;margin-top:4px;border-top:1px solid var(--line);padding-top:5px;}
+  .np-free-input{width:56px;font-family:inherit;font-size:12px;padding:4px 5px;border:1px solid var(--line);border-radius:6px;}
+  .np-free button{width:auto!important;height:auto!important;padding:4px 8px!important;}
+
+  /* 中タスク（レーン）の強調カラー */
+  .track[data-color]{box-shadow:inset 5px 0 0 var(--tc);}
+  .track[data-color] .track-name{color:var(--tc);}
+  .track-palette{position:relative;margin:6px 2px 0;}
+
+  /* 左下のドット絵ハチドリ */
+  .bird-char{position:fixed;left:14px;bottom:14px;z-index:78;width:96px;height:96px;display:flex;align-items:flex-end;justify-content:center;cursor:pointer;filter:drop-shadow(0 3px 4px rgba(0,0,0,.18));transition:transform .15s ease;animation:birdBob 2.6s ease-in-out infinite;}
+  .bird-char:hover{transform:scale(1.08) translateY(-2px);}
+  .bird-char:active{transform:scale(.94);}
+  .bird-char svg,.bird-char .bird-img{display:block;image-rendering:pixelated;width:88px;height:auto;}
+  @keyframes birdBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+
   /* 初回チュートリアル（コーチマーク） */
   .coach-backdrop{position:fixed;inset:0;z-index:85;background:rgba(11,63,69,.18);display:none;}
   .coach-backdrop.show{display:block;}
@@ -389,6 +456,31 @@ const KIND_LABEL = {person:'個人', organization:'組織'};
 
 function escapeHtml(s){
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* ===== テーマ（カラーバリエーション） ===== */
+const THEMES = {
+  green:     { label:'緑と白（標準）', v:{ bg:'#ffffff', card:'#f2f8f8', teal:'#028090', tealL:'#5db7c0', dark:'#0b3f45', ink:'#29373a', ink2:'#5c6b6e', line:'#dde7e7', done:'#028090', active:'#5db7c0', waiting:'#d94f4e', blocked:'#e8a13b', todo:'#c2cdce', red:'#d94f4e', orange:'#e8a13b' } },
+  mono:      { label:'白黒', v:{ bg:'#ffffff', card:'#f4f4f4', teal:'#333333', tealL:'#9a9a9a', dark:'#222222', ink:'#1a1a1a', ink2:'#666666', line:'#dddddd', done:'#333333', active:'#9a9a9a', waiting:'#555555', blocked:'#888888', todo:'#cccccc', red:'#555555', orange:'#777777' } },
+  blue:      { label:'青と白', v:{ bg:'#ffffff', card:'#eef4fe', teal:'#1f6feb', tealL:'#79b8ff', dark:'#0b2f6b', ink:'#1b2733', ink2:'#5b6b7d', line:'#dbe6f5', done:'#1f6feb', active:'#79b8ff', waiting:'#d94f4e', blocked:'#e8a13b', todo:'#c4cfdb', red:'#d94f4e', orange:'#e8a13b' } },
+  graymono:  { label:'灰色と白黒', v:{ bg:'#fafafa', card:'#f0f1f1', teal:'#5c6b6e', tealL:'#aab4b5', dark:'#3a3a3a', ink:'#222222', ink2:'#6a6a6a', line:'#dcdcdc', done:'#5c6b6e', active:'#aab4b5', waiting:'#b05a59', blocked:'#b08a4a', todo:'#cdcdcd', red:'#b05a59', orange:'#b08a4a' } },
+  bluegreen: { label:'青と薄い緑', v:{ bg:'#ffffff', card:'#eef6f1', teal:'#2f7dd1', tealL:'#8fd4b0', dark:'#1f4f6b', ink:'#22343a', ink2:'#5c6b6e', line:'#d7e8de', done:'#2f7dd1', active:'#8fd4b0', waiting:'#d94f4e', blocked:'#e8a13b', todo:'#c2cdce', red:'#d94f4e', orange:'#e8a13b' } },
+  sky:       { label:'明るいスカイ', v:{ bg:'#ffffff', card:'#effbfd', teal:'#0ea5b7', tealL:'#67e8f9', dark:'#0a4f5a', ink:'#22343a', ink2:'#5c6b6e', line:'#d4eef2', done:'#0ea5b7', active:'#67e8f9', waiting:'#d94f4e', blocked:'#e8a13b', todo:'#c2cdce', red:'#d94f4e', orange:'#e8a13b' } },
+  violet:    { label:'明るいラベンダー', v:{ bg:'#ffffff', card:'#f5f3fc', teal:'#7a5cd1', tealL:'#c4b5fd', dark:'#3b2d6b', ink:'#2a2540', ink2:'#615c75', line:'#e6e1f5', done:'#7a5cd1', active:'#c4b5fd', waiting:'#d94f4e', blocked:'#e8a13b', todo:'#cac4dc', red:'#d94f4e', orange:'#e8a13b' } },
+};
+let currentTheme = 'green';
+function applyTheme(name){
+  const t = THEMES[name] || THEMES.green;
+  currentTheme = THEMES[name] ? name : 'green';
+  const s = document.documentElement.style;
+  const v = t.v;
+  s.setProperty('--bg', v.bg); s.setProperty('--card', v.card);
+  s.setProperty('--teal', v.teal); s.setProperty('--teal-l', v.tealL);
+  s.setProperty('--dark', v.dark); s.setProperty('--ink', v.ink); s.setProperty('--ink-2', v.ink2);
+  s.setProperty('--line', v.line); s.setProperty('--done', v.done); s.setProperty('--active', v.active);
+  s.setProperty('--waiting', v.waiting); s.setProperty('--blocked', v.blocked); s.setProperty('--todo', v.todo);
+  s.setProperty('--red', v.red); s.setProperty('--orange', v.orange);
+  try{ localStorage.setItem('proodos_theme', currentTheme); }catch(_){}
 }
 
 /* ============================================================
@@ -680,6 +772,7 @@ function caseStallCount(){ return allItems().filter(it => displayStatus(it) === 
  * §4 描画
  * ============================================================ */
 let openTrackId = null;
+let openItemId = null; // 展開中の小タスク（メモ・進捗エディタ）
 
 function breakdownBarHtml(bd, total){
   if(total === 0) return '';
@@ -701,6 +794,7 @@ function renderTopbar(){
       <button data-action="toggle-settings" class="idx-tab idx-case ${app.settingsOpen?'on':''}">⚙ 案件設定</button>
       <button data-action="toggle-time" class="idx-tab idx-time ${app.timeMode?'on':''}">🕐 時間管理</button>
       <button data-action="toggle-memo" class="idx-tab idx-memo ${app.memoOpen?'on':''}">📝 メモ管理</button>
+      <select data-change="theme" title="テーマカラー" class="theme-sel">${Object.keys(THEMES).map(k=>`<option value="${k}"${k===currentTheme?' selected':''}>🎨 ${THEMES[k].label}</option>`).join('')}</select>
     </div>
     <div class="sep"></div>
     <div class="grp"><span class="lab">新規</span>
@@ -1220,7 +1314,7 @@ function renderMilestones(){
   document.getElementById('msRow').innerHTML = c.milestones.map(m => {
     const isAnchor = m.id === c.anchor;
     if(!m.date){
-      return `<div class="ms-card ${isAnchor?'anchor':''}"><div class="ms-label">${escapeHtml(m.label)}</div>
+      return `<div class="ms-card ${isAnchor?'anchor':''}" draggable="true" data-ms="${m.id}"><div class="ms-label">⠿ ${escapeHtml(m.label)}</div>
         <div class="ms-date">未定</div><div class="ms-sub tbd">日付が未確定です</div></div>`;
     }
     const d = parseDate(m.date);
@@ -1229,8 +1323,8 @@ function renderMilestones(){
     if(left < 0){ cls='danger'; sub = `${-left}日 経過`; }
     else if(left === 0){ cls='danger'; sub = '本日'; }
     else { if(left<=3) cls='warn'; sub = `あと ${left}日`; }
-    return `<div class="ms-card ${isAnchor?'anchor':''}">
-      <div class="ms-label">${escapeHtml(m.label)}</div>
+    return `<div class="ms-card ${isAnchor?'anchor':''}" draggable="true" data-ms="${m.id}">
+      <div class="ms-label">⠿ ${escapeHtml(m.label)}</div>
       <div class="ms-date">${d.getFullYear()}/${fmtMd(d)}</div>
       <div class="ms-sub ${cls}">${sub}</div>
     </div>`;
@@ -1287,9 +1381,15 @@ function trackCardHtml(track, view){
   const imp = track.importance || 'normal';
   const impChip = imp === 'high' ? '<span class="imp-chip high">高</span>'
                 : imp === 'low' ? '<span class="imp-chip low">低</span>' : '';
+  const paletteBtn = `<button class="archbtn sm ghost" data-action="track-palette-open" data-track="${track.id}" title="このタスクの強調カラー">🎨</button>`;
+  const trackPalette = `<span class="track-palette palette-pop" hidden>
+    ${PALETTE.map(cc => `<button type="button" class="swatch" style="background:${cc}" data-action="track-palette-set" data-track="${track.id}" data-color="${cc}" title="${cc}"></button>`).join('')}
+    <button type="button" class="swatch none" data-action="track-palette-set" data-track="${track.id}" data-color="" title="色なし">×</button>
+  </span>`;
 
   const open = openTrackId === track.id;
-  return `<div class="track ${stalled?'stalled':''} ${track.archived?'archived':''} imp-${imp}" data-track="${track.id}">
+  const tcolor = track.color ? `data-color style="--tc:${track.color}"` : '';
+  return `<div class="track ${stalled?'stalled':''} ${track.archived?'archived':''} imp-${imp}" data-track="${track.id}" ${tcolor}>
     <div class="track-head" data-toggle="${track.id}" draggable="true">
       <span class="drag-handle" title="ドラッグで並べ替え">⠿</span>
       ${star}
@@ -1297,8 +1397,10 @@ function trackCardHtml(track, view){
       ${impChip}
       ${vis}
       <span class="status-badge s-${st}">${STATUS_LABEL[st]}</span>
+      ${paletteBtn}
       ${archBtn}
     </div>
+    ${trackPalette}
     ${dotbarHtml(track)}
     ${stallBlock}
     <div class="detail ${open?'':'hidden'}" id="detail-${track.id}">${open ? detailHtml(track) : ''}</div>
@@ -1350,34 +1452,78 @@ function renderTracks(){
 
 function currentItem(track){ return track.items.find(it => displayStatus(it) !== 'DONE'); }
 
+const PALETTE = ['#028090','#2f7dd1','#18a07a','#e8a13b','#d94f4e','#7a5cd1','#d96fa6','#5c6b6e'];
+
+function itemRowHtml(it, track, cur){
+  const ds = displayStatus(it);
+  const isDone = ds === 'DONE';
+  const dl = deadlineLevel(it, track);
+  const lsd = latestSafeDate(it, track);
+  const chips = [];
+  if(cur && it.id === cur.id) chips.push(`<span class="chip here">いまここ・期日 ${lsd?fmtMd(lsd):'未定'}</span>`);
+  if(it.type === 'information') chips.push('<span class="chip info">情報待ち</span>');
+  const sd = stallDays(it);
+  if(sd !== null) chips.push(`<span class="chip stall">停滞 ${sd}日</span>`);
+  if(ds === 'BLOCKED') chips.push('<span class="chip blocked">依存待ち</span>');
+  if(!isDone && dl === 'danger') chips.push('<span class="chip danger">期日超過</span>');
+  else if(!isDone && dl === 'warn') chips.push('<span class="chip warn">期日まぢか</span>');
+
+  const subs = it.subs || [];
+  if(subs.length) chips.push(`<span class="chip sub">細分 ${subs.filter(s=>s.done).length}/${subs.length}</span>`);
+  const subsHtml = subs.length ? `<div class="sub-list">${subs.map(s => `
+    <label class="sub-row">
+      <input type="checkbox" class="sub-check" data-item="${it.id}" data-sub="${s.id}" ${s.done?'checked':''}>
+      <span class="${s.done?'subdone':''}">${escapeHtml(s.title)}</span>
+      <button class="sub-del" data-action="del-sub" data-item="${it.id}" data-sub="${s.id}" title="削除">×</button>
+    </label>`).join('')}</div>` : '';
+
+  const palettePop = `<span class="palette-pop" hidden>
+    ${PALETTE.map(c => `<button type="button" class="swatch" style="background:${c}" data-action="palette-set" data-item="${it.id}" data-color="${c}" title="${c}"></button>`).join('')}
+    <button type="button" class="swatch none" data-action="palette-set" data-item="${it.id}" data-color="" title="色なし">×</button>
+  </span>`;
+
+  const colorAttr = it.color ? `data-color style="--ic:${it.color}"` : '';
+  const prog = Math.max(0, Math.min(100, it.progress || 0));
+  const open = openItemId === it.id;
+  const progChip = (prog > 0 && !isDone) ? `<span class="chip prog">進捗 ${prog}%</span>` : '';
+  const editor = open ? `<div class="item-editor">
+      <div class="ie-row">
+        <label class="ie-lab">進捗</label>
+        <input type="number" min="0" max="100" class="ie-prog" data-change="item-progress" data-id="${it.id}" value="${prog}"> %
+        <div class="iprog big"><div class="iprog-fill" style="width:${prog}%"></div></div>
+      </div>
+      <textarea class="ie-memo" data-change="item-memo" data-id="${it.id}" placeholder="メモ（自由記入・改行OK）…">${escapeHtml(it.memo||'')}</textarea>
+    </div>` : '';
+
+  return `<div class="item-row ${isDone?'done':''} ${open?'expanded':''}" data-item="${it.id}" ${colorAttr}>
+    <span class="item-drag" draggable="true" data-itemdrag="${it.id}" data-track="${track.id}" title="ドラッグで並べ替え">⠿</span>
+    <input type="checkbox" class="item-check" ${isDone?'checked':''} ${ds==='BLOCKED'?'disabled title="依存先が未完了"':''} data-item="${it.id}">
+    <div class="item-main">
+      <div class="item-title" data-action="item-expand" data-item="${it.id}" title="クリックで展開（メモ・進捗）">${escapeHtml(it.title)}</div>
+      ${(it.memo && !open) ? `<div class="item-memo">📝 ${escapeHtml(it.memo)}</div>` : ''}
+      <div class="item-meta">
+        <span>窓口：${escapeHtml(party(it.owner).name)}</span>
+        <span>期日 ${lsd?fmtMd(lsd):'未定'}</span>
+        ${progChip}
+        ${chips.join('')}
+      </div>
+      ${(prog>0 && !isDone) ? `<div class="iprog"><div class="iprog-fill" style="width:${prog}%"></div></div>` : ''}
+      ${subsHtml}
+      ${editor}
+    </div>
+    <span class="item-tools">
+      <button class="itool" data-action="item-expand" data-item="${it.id}" title="メモ・進捗を展開">${open?'▴':'▾'}</button>
+      <button class="itool" data-action="palette-open" data-item="${it.id}" title="強調カラー">🎨</button>
+      <button class="itool" data-action="rename-item" data-item="${it.id}" data-track="${track.id}" title="名前を編集（理由が必要）">✎</button>
+      <button class="itool" data-action="add-sub" data-item="${it.id}" title="細分化を追加">＋</button>
+    </span>
+    ${palettePop}
+  </div>`;
+}
+
 function detailHtml(track){
   const cur = currentItem(track);
-  const rows = track.items.map(it => {
-    const ds = displayStatus(it);
-    const isDone = ds === 'DONE';
-    const dl = deadlineLevel(it, track);
-    const lsd = latestSafeDate(it, track);
-    const chips = [];
-    if(cur && it.id === cur.id) chips.push(`<span class="chip here">いまここ・期日 ${lsd?fmtMd(lsd):'未定'}</span>`);
-    if(it.type === 'information') chips.push('<span class="chip info">情報待ち</span>');
-    const sd = stallDays(it);
-    if(sd !== null) chips.push(`<span class="chip stall">停滞 ${sd}日</span>`);
-    if(ds === 'BLOCKED') chips.push('<span class="chip blocked">依存待ち</span>');
-    if(!isDone && dl === 'danger') chips.push('<span class="chip danger">期日超過</span>');
-    else if(!isDone && dl === 'warn') chips.push('<span class="chip warn">期日まぢか</span>');
-
-    return `<div class="item-row ${isDone?'done':''}">
-      <input type="checkbox" class="item-check" ${isDone?'checked':''} ${ds==='BLOCKED'?'disabled title="依存先が未完了"':''} data-item="${it.id}">
-      <div class="item-main">
-        <div class="item-title">${escapeHtml(it.title)}</div>
-        <div class="item-meta">
-          <span>窓口：${escapeHtml(party(it.owner).name)}</span>
-          <span>期日 ${lsd?fmtMd(lsd):'未定'}</span>
-          ${chips.join('')}
-        </div>
-      </div>
-    </div>`;
-  }).join('');
+  const rows = track.items.map(it => itemRowHtml(it, track, cur)).join('');
 
   const contactItem = cur || track.items[track.items.length-1] || null;
   const cp = contactItem ? party(contactItem.owner) : { name:'—（小タスク未登録）' };
@@ -1419,8 +1565,13 @@ function detailHtml(track){
         <input type="text" id="ai-title-${track.id}" placeholder="小タスク名…">
         <select id="ai-type-${track.id}" title="種別"><option value="action">対応</option><option value="information">情報待ち</option></select>
         <select id="ai-owner-${track.id}" title="窓口">${ownerOpts}</select>
+        <input type="text" id="ai-memo-${track.id}" placeholder="メモ（任意）">
         <span class="addlbl">期日</span>
-        <input type="number" id="ai-off-${track.id}" class="num" value="3">
+        <span class="numpick">
+          <input type="hidden" id="ai-off-${track.id}" value="3">
+          <button type="button" class="numpick-btn" data-action="numpick-open" data-target="ai-off-${track.id}">3</button>
+          <span class="numpick-pop" hidden>${[0,1,2,3,4,5,6,7,8,9,10].map(n=>`<button type="button" data-action="numpick-set" data-target="ai-off-${track.id}" data-val="${n}">${n}</button>`).join('')}<span class="np-free"><input type="number" min="0" class="np-free-input" placeholder="任意"><button type="button" data-action="numpick-free" data-target="ai-off-${track.id}">OK</button></span></span>
+        </span>
         <span class="addlbl">日前</span>
         <button data-action="add-item" data-track="${track.id}">追加</button>
       </div>
@@ -1461,9 +1612,17 @@ function renderAll(){
 /* ============================================================
  * §4.5 操作
  * ============================================================ */
+// 完了した小タスクを前方へ寄せる（進捗バーが左から埋まって見える）
+function reflowItems(track){
+  const done = track.items.filter(it => displayStatus(it) === 'DONE');
+  const rest = track.items.filter(it => displayStatus(it) !== 'DONE');
+  track.items = [...done, ...rest];
+}
+
 function toggleItem(itemId){
   const it = itemIndex[itemId];
   if(!it || displayStatus(it) === 'BLOCKED') return;
+  const track = CC().tracks.find(t => t.items.includes(it));
   if(it.status === 'DONE'){
     const reason = prompt(`「${it.title}」を未完了に戻します。\n変更理由を入力してください（空ならキャンセル）：`);
     if(reason === null || reason.trim() === '') return;
@@ -1475,6 +1634,7 @@ function toggleItem(itemId){
     logChange(it, it.status, 'DONE', null);
     it.status = 'DONE';
   }
+  if(track) reflowItems(track); // 完了を前方へ
   renderAll();
 }
 
@@ -1496,9 +1656,36 @@ function addItemFromForm(tid){
   const type = document.getElementById('ai-type-'+tid).value;
   const owner = document.getElementById('ai-owner-'+tid).value;
   const off = parseInt(document.getElementById('ai-off-'+tid).value, 10);
-  const it = { id:'i'+(app.seqItem++), title, type, status:'TODO', owner, offset_days: isNaN(off)?0:off };
+  const memo = (document.getElementById('ai-memo-'+tid).value || '').trim() || undefined;
+  const it = { id:'i'+(app.seqItem++), title, type, status:'TODO', owner, offset_days: isNaN(off)?0:off, memo, subs:[] };
   track.items.push(it);
   app.changeHistory.push({ caseId:app.currentCaseId, trackId:tid, itemTitle:title, from:'—', to:'追加', reason:null, ts:new Date().toLocaleString('ja-JP',{hour12:false}) });
+  renderAll();
+}
+
+// 小タスクのリネーム（理由必須・履歴に追記）
+function renameItem(itemId){
+  const it = itemIndex[itemId];
+  if(!it) return;
+  const nv = prompt('小タスクの新しい名前：', it.title);
+  if(nv === null || !nv.trim() || nv.trim() === it.title) return;
+  const reason = prompt(`「${it.title}」→「${nv.trim()}」に変更します。\n変更理由を入力してください（必須・空ならキャンセル）：`);
+  if(reason === null || !reason.trim()) return;
+  const track = CC().tracks.find(t => t.items.includes(it));
+  app.changeHistory.push({ caseId:app.currentCaseId, trackId:track.id, itemTitle:it.title,
+    from:it.title, to:nv.trim(), reason:reason.trim(), ts:new Date().toLocaleString('ja-JP',{hour12:false}) });
+  it.title = nv.trim();
+  renderAll();
+}
+
+// 小タスク内の細分化（微細タスク）追加・トグル・削除
+function addSub(itemId){
+  const it = itemIndex[itemId];
+  if(!it) return;
+  const t = prompt('細分化タスク（微細タスク）の名前：');
+  if(t === null || !t.trim()) return;
+  it.subs = it.subs || [];
+  it.subs.push({ id:'sub'+(app.seqItem++), title:t.trim(), done:false });
   renderAll();
 }
 
@@ -1582,6 +1769,7 @@ document.addEventListener('change', e => {
   if(kind === 'party-email'){ const p = party(id); if(p) p.email = val.trim() || undefined; renderAll(); return; }
   if(kind === 'party-kind'){ const p = party(id); if(p) p.kind = val; renderAll(); return; }
   if(kind === 'set-importance'){ const t = CC().tracks.find(x => x.id === id); if(t) t.importance = val; renderAll(); return; }
+  if(kind === 'theme'){ applyTheme(val); renderAll(); return; }
   // 履歴から呼び出し（再描画せずフォームに流し込む）
   if(kind === 'recall-block'){ if(val) prefillBlockFromBank(val); return; }
   if(kind === 'recall-span'){ if(val) prefillSpanFromBank(val); return; }
@@ -1592,16 +1780,38 @@ document.addEventListener('change', e => {
   if(kind === 'mb-memo'){ const e = findBank(id); if(e){ e.memo = val.trim(); e.key = e.title + '|' + e.memo; } renderAll(); return; }
   if(kind === 'mb-start'){ const e = findBank(id); if(e && e.start != null){ const m = timeToMin(val); if(!isNaN(m)) e.start = m; } renderAll(); return; }
   if(kind === 'mb-end'){ const e = findBank(id); if(e && e.start != null){ const m = timeToMin(val); if(!isNaN(m) && m > e.start) e.dur = m - e.start; } renderAll(); return; }
+  // 小タスク：進捗% / メモ（展開エディタ）
+  if(kind === 'item-progress'){ const it = itemIndex[id]; if(it){ let p = parseInt(val,10); it.progress = isNaN(p)?0:Math.max(0,Math.min(100,p)); } renderAll(); return; }
+  if(kind === 'item-memo'){ const it = itemIndex[id]; if(it){ it.memo = val.trim() || undefined; } renderAll(); return; }
 });
 
 document.addEventListener('click', e => {
   const chk = e.target.closest('.item-check');
   if(chk){ e.stopPropagation(); toggleItem(chk.dataset.item); return; }
+  // 細分化（微細タスク）チェック
+  const sc = e.target.closest('.sub-check');
+  if(sc){
+    e.stopPropagation();
+    const it = itemIndex[sc.dataset.item];
+    const s = it && (it.subs||[]).find(x => x.id === sc.dataset.sub);
+    if(s) s.done = !s.done;
+    renderAll();
+    return;
+  }
+  // 小タスクのタイトルをクリックで展開（メモ・進捗）
+  const titleEl = e.target.closest('.item-title');
+  if(titleEl && titleEl.dataset.item){
+    e.stopPropagation();
+    openItemId = (openItemId === titleEl.dataset.item) ? null : titleEl.dataset.item;
+    renderAll();
+    return;
+  }
 
   const btn = e.target.closest('button[data-action]');
   if(btn){
     e.stopPropagation();
     const act = btn.dataset.action, tid = btn.dataset.track, id = btn.dataset.id;
+    if(typeof birdOnTab === 'function') birdOnTab(act); // タブ操作で鳥が反応
     const c = CC();
     switch(act){
       case 'toggle-settings': app.settingsOpen = !app.settingsOpen; renderAll(); break;
@@ -1717,6 +1927,59 @@ document.addEventListener('click', e => {
       case 'archive-done': archiveDone(); break;
       case 'add-track': addTrackFromForm(); break;
       case 'add-item': addItemFromForm(tid); break;
+      case 'item-expand': openItemId = (openItemId === btn.dataset.item) ? null : btn.dataset.item; renderAll(); break;
+      case 'rename-item': renameItem(btn.dataset.item); break;
+      case 'add-sub': addSub(btn.dataset.item); break;
+      case 'del-sub': {
+        const it = itemIndex[btn.dataset.item];
+        if(it) it.subs = (it.subs||[]).filter(s => s.id !== btn.dataset.sub);
+        renderAll(); break;
+      }
+      case 'palette-open': {
+        const pop = btn.closest('.item-row').querySelector('.palette-pop');
+        if(pop) pop.hidden = !pop.hidden;
+        break; // 再描画しない
+      }
+      case 'palette-set': {
+        const it = itemIndex[btn.dataset.item];
+        if(it) it.color = btn.dataset.color || undefined;
+        renderAll(); break;
+      }
+      case 'numpick-open': {
+        const pop = btn.parentElement.querySelector('.numpick-pop');
+        if(pop) pop.hidden = !pop.hidden;
+        break; // 再描画しない
+      }
+      case 'numpick-set': {
+        const hid = document.getElementById(btn.dataset.target);
+        if(hid){ hid.value = btn.dataset.val; }
+        const wrap = btn.closest('.numpick');
+        const lbl = wrap.querySelector('.numpick-btn'); if(lbl) lbl.textContent = btn.dataset.val;
+        const pop = wrap.querySelector('.numpick-pop'); if(pop) pop.hidden = true;
+        break; // 再描画しない
+      }
+      case 'numpick-free': {
+        const wrap = btn.closest('.numpick');
+        const inp = wrap.querySelector('.np-free-input');
+        let v = parseInt(inp.value, 10);
+        if(isNaN(v) || v < 0){ inp.focus(); break; }
+        const hid = document.getElementById(btn.dataset.target);
+        if(hid){ hid.value = v; }
+        const lbl = wrap.querySelector('.numpick-btn'); if(lbl) lbl.textContent = v;
+        const pop = wrap.querySelector('.numpick-pop'); if(pop) pop.hidden = true;
+        break; // 再描画しない
+      }
+      case 'track-palette-open': {
+        const pop = btn.closest('.track').querySelector('.track-palette');
+        if(pop) pop.hidden = !pop.hidden;
+        break; // 再描画しない
+      }
+      case 'track-palette-set': {
+        const t = CC().tracks.find(x => x.id === tid);
+        if(t) t.color = btn.dataset.color || undefined;
+        renderAll(); break;
+      }
+      case 'set-theme': break; // change で処理
       case 'report': document.getElementById('report-'+tid).innerHTML = `<div class="report-out">${escapeHtml(buildReport(c.tracks.find(t=>t.id===tid)))}</div>`; break;
       case 'memo': case 'memo-add': {
         const input = document.getElementById('memoInput-'+tid);
@@ -1787,6 +2050,63 @@ document.addEventListener('dragend', () => {
   const d = document.querySelector('.track.dragging');
   if(d) d.classList.remove('dragging');
 });
+
+/* ---- 小タスクの並べ替え（行のハンドル） ---- */
+let itemDragId = null;
+document.addEventListener('dragstart', e => {
+  const h = e.target.closest('[data-itemdrag]');
+  if(!h) return;
+  itemDragId = h.dataset.itemdrag;
+});
+document.addEventListener('dragover', e => {
+  if(!itemDragId) return;
+  if(e.target.closest('.item-row')) e.preventDefault();
+});
+document.addEventListener('drop', e => {
+  if(!itemDragId) return;
+  const row = e.target.closest('.item-row');
+  if(row && row.dataset.item && row.dataset.item !== itemDragId){
+    e.preventDefault();
+    const arr = CC().tracks.flatMap(t => t.items.includes(itemIndex[itemDragId]) ? [t] : []);
+    const track = arr[0];
+    if(track){
+      const fi = track.items.findIndex(x => x.id === itemDragId);
+      const moved = track.items.splice(fi, 1)[0];
+      const ti = track.items.findIndex(x => x.id === row.dataset.item);
+      track.items.splice(ti < 0 ? track.items.length : ti, 0, moved);
+      renderAll();
+    }
+  }
+  itemDragId = null;
+});
+document.addEventListener('dragend', () => { itemDragId = null; });
+
+/* ---- マイルストーンの並べ替え（横並びドラッグ） ---- */
+let msDragId = null;
+document.addEventListener('dragstart', e => {
+  const h = e.target.closest('[data-ms]');
+  if(!h) return;
+  msDragId = h.dataset.ms;
+});
+document.addEventListener('dragover', e => {
+  if(!msDragId) return;
+  if(e.target.closest('[data-ms]')) e.preventDefault();
+});
+document.addEventListener('drop', e => {
+  if(!msDragId) return;
+  const card = e.target.closest('[data-ms]');
+  if(card && card.dataset.ms && card.dataset.ms !== msDragId){
+    e.preventDefault();
+    const arr = CC().milestones;
+    const fi = arr.findIndex(m => m.id === msDragId);
+    const moved = arr.splice(fi, 1)[0];
+    const ti = arr.findIndex(m => m.id === card.dataset.ms);
+    arr.splice(ti < 0 ? arr.length : ti, 0, moved);
+    renderAll();
+  }
+  msDragId = null;
+});
+document.addEventListener('dragend', () => { msDragId = null; });
 
 /* ---- ガントバー：ドラッグで移動・端で長さ変更（縦/横 両対応）＋スプリッター＋複数日バー ---- */
 let gDrag = null;
@@ -1989,6 +2309,8 @@ if(!loadState()){
   app.currentCaseId = app.cases[0].id;
 }
 
+try{ applyTheme(localStorage.getItem('proodos_theme') || 'green'); }catch(_){ applyTheme('green'); }
+
 renderAll();
 
 /* ============================================================
@@ -2014,21 +2336,21 @@ const HELP_PAGES = [
     { label:'窓口・進捗報告・共有メモ', desc:'「窓口」に確認、定型文の進捗報告、共有メモを残せる', sel:"#stickyBar" },
   ]},
   { title:'④ 時間管理・カレンダー', topics:[
-    { label:'時間管理タブ', desc:'押すと右に時間チャートが開く（左右はスプリッターで幅調整）', sel:"[data-action='toggle-time']" },
-    { label:'週間ガント', desc:'「日をまたぐタスク」と「その日の時間帯」を同時に確認・編集', sel:"[data-action='toggle-time']" },
-    { label:'大きく日付ジャンプ', desc:'週・月・年送り＋日付指定で数年先へも飛べる', sel:"[data-action='toggle-time']" },
+    { label:'時間管理を開く', desc:'右に時間チャートが開く（左右はスプリッターで幅調整）', open:'time-cal', sel:".time-panel" },
+    { label:'週間ガント', desc:'「日をまたぐタスク」と「その日の時間帯」を同時に確認・編集', open:'time-cal', sel:".weekgantt" },
+    { label:'大きく日付ジャンプ', desc:'週・月・年送り＋日付指定で数年先へも飛べる', open:'time-cal', sel:".cal-nav" },
   ]},
   { title:'⑤ 一日のガント', topics:[
-    { label:'縦／横の切替', desc:'0:00–24:00を縦にも横にも。スクロールできる', sel:"[data-action='toggle-time']" },
-    { label:'ドラッグで移動・長さ変更', desc:'予定バーを移動、端で長さ変更（15分スナップ）', sel:"[data-action='toggle-time']" },
-    { label:'タスク別レーン・重なり警告', desc:'タスク案件ごとにレーン、時間の重なりは赤枠', sel:"[data-action='toggle-time']" },
-    { label:'通知🔔・メール📧', desc:'予定に通知フラグ、メール下書きを生成（モック）', sel:"[data-action='toggle-time']" },
+    { label:'縦／横の切替', desc:'0:00–24:00を縦にも横にも。スクロールできる', open:'time-day', sel:"[data-action='toggle-orient']" },
+    { label:'ドラッグで移動・長さ変更', desc:'予定バーを移動、端で長さ変更（15分スナップ）', open:'time-day', sel:".gwrap" },
+    { label:'タスク別レーン・重なり警告', desc:'タスク案件ごとにレーン、時間の重なりは赤枠', open:'time-day', sel:".gwrap" },
+    { label:'予定を追加（通知🔔・メール📧）', desc:'時刻・メモ・通知つきで予定追加。メール下書きも生成', open:'time-day', sel:".add-block" },
   ]},
   { title:'⑥ メモ・保存・バックアップ', topics:[
-    { label:'メモ管理タブ', desc:'時刻＋メモを「時間／日またぎ」タブで頻度順に管理・編集', sel:"[data-action='toggle-memo']" },
-    { label:'履歴から呼び出し・テンプレ化', desc:'追加画面で過去の時刻＋メモを頻度順に再利用、★でテンプレ固定', sel:"[data-action='toggle-memo']" },
-    { label:'自動保存', desc:'変更はこのブラウザに自動保存。開き直すと続きから', sel:"[data-action='toggle-backup']" },
-    { label:'バックアップ（コピペ式）', desc:'ダウンロードせずコピペで退避・復元。会社環境でも安心', sel:"[data-action='toggle-backup']" },
+    { label:'メモ管理を開く', desc:'時刻＋メモを「時間／日またぎ」タブで頻度順に管理・編集', open:'memo', sel:"#memobank .mb-tabs" },
+    { label:'メモ・テンプレ一覧', desc:'過去の予定を頻度順に再利用、★でテンプレ固定', open:'memo', sel:"#memobank .settings-panel" },
+    { label:'バックアップを開く（コピペ式）', desc:'ダウンロードせずコピペで退避・復元。会社環境でも安心', open:'backup', sel:"#backup .settings-panel" },
+    { label:'テーマカラー', desc:'緑・白黒・青・ラベンダー等から見た目を変更', sel:"[data-change='theme']" },
   ]},
 ];
 let helpPage = 0;
@@ -2042,13 +2364,23 @@ function highlightHelp(sel){
   setTimeout(() => el.classList.remove('help-glow'), 3000);
 }
 
+// ヘルプ：必要なら該当パネルを開いてから、その場所まで追従して光らせる
+function helpOpenAndHighlight(sel, open){
+  if(open === 'time-cal'){ app.timeMode = true; app.selectedDate = null; renderAll(); }
+  else if(open === 'time-day'){ app.timeMode = true; app.selectedDate = ymd(TODAY); renderAll(); }
+  else if(open === 'memo'){ app.memoOpen = true; renderAll(); }
+  else if(open === 'backup'){ app.backupOpen = true; renderAll(); }
+  else if(open === 'settings'){ app.settingsOpen = true; renderAll(); }
+  setTimeout(() => highlightHelp(sel), open ? 80 : 0); // 描画後に追従
+}
+
 function renderHelp(){
   const p = HELP_PAGES[helpPage];
   document.getElementById('helpPanel').innerHTML = `
     <div class="help-head"><strong>❓ 使い方</strong><button data-help="close" class="sm ghost">✕</button></div>
     <div class="help-page-title">${p.title}</div>
     <div class="help-topics">${p.topics.map(t =>
-      `<button data-help="topic" data-sel="${t.sel}"><b>${t.label}</b><br><span class="help-desc">${t.desc}</span></button>`).join('')}</div>
+      `<button data-help="topic" data-sel="${t.sel}" ${t.open?`data-open="${t.open}"`:''}><b>${t.label}</b><br><span class="help-desc">${t.desc}</span></button>`).join('')}</div>
     <div class="help-nav">
       <button data-help="prev" class="sm">‹</button>
       <span class="pg">${helpPage+1} / ${HELP_PAGES.length}</span>
@@ -2087,7 +2419,7 @@ function renderHelp(){
     if(a === 'prev'){ helpPage = (helpPage + HELP_PAGES.length - 1) % HELP_PAGES.length; renderHelp(); }
     else if(a === 'next'){ helpPage = (helpPage + 1) % HELP_PAGES.length; renderHelp(); }
     else if(a === 'close'){ panel.classList.remove('open'); }
-    else if(a === 'topic'){ highlightHelp(t.dataset.sel); }
+    else if(a === 'topic'){ helpOpenAndHighlight(t.dataset.sel, t.dataset.open); }
     else if(a === 'tutorial'){ panel.classList.remove('open'); startTutorial(); }
   });
 })();
@@ -2163,6 +2495,109 @@ function endTutorial(){
   window.addEventListener('scroll', () => { if(tip.classList.contains('show')) positionCoach(); }, true);
   // 初回訪問（フラグ未設定）のときだけ自動表示
   if(!localStorage.getItem('proodos_tutorial_v1')){ setTimeout(startTutorial, 800); }
+})();
+
+/* ============================================================
+ * 左下のドット絵ハチドリ（なでなで・差分ランダム表示）
+ * ============================================================ */
+const BIRD_BASE = [
+  "............",
+  ".....BBB....",
+  "....BBBBBB..",
+  "...BBBBBBB..",
+  "kkkBeBBBBB..",
+  "...BPBBBBgg.",
+  "...BBBBBBgg.",
+  "....yyBBg...",
+  ".....yy.....",
+  ".....LL.....",
+  "....L..L....",
+];
+const BIRD_COLORS = { 'B':'#34c0a8','g':'#1f9c86','y':'#dff3ee','k':'#e8a13b','e':'#15302b','c':'#15302b','P':'#e86fa6','L':'#c98a3a','H':'#ff7aa8' };
+function birdGridToSVG(grid){
+  const cols = grid[0].length, rows = grid.length, px = 7;
+  let cells = '';
+  for(let r=0;r<rows;r++) for(let i=0;i<cols;i++){
+    const col = BIRD_COLORS[grid[r][i]];
+    if(col) cells += `<rect x="${i*px}" y="${r*px}" width="${px}" height="${px}" fill="${col}"/>`;
+  }
+  return `<svg viewBox="0 0 ${cols*px} ${rows*px}" width="${cols*px}" height="${rows*px}" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">${cells}</svg>`;
+}
+function birdEdit(edits){
+  const g = BIRD_BASE.map(r => r.split(''));
+  edits.forEach(([r,c,ch]) => { if(g[r] && c < g[r].length) g[r][c] = ch; });
+  return g.map(r => r.join(''));
+}
+// 15差分（最後の petted はクリック専用）
+const BIRD_FRAMES = [
+  BIRD_BASE,                                                              // 1 idle
+  birdEdit([[4,4,'B']]),                                                  // 2 まばたき
+  birdEdit([[5,8,'B'],[5,9,'.'],[6,9,'.'],[3,9,'g'],[3,10,'g'],[4,9,'g']]),// 3 羽を上げる
+  birdEdit([[5,9,'.'],[6,9,'.'],[7,8,'g'],[7,9,'g'],[8,8,'g']]),          // 4 羽を下げる
+  birdEdit([[4,0,'.'],[4,1,'.'],[4,2,'.'],[5,0,'k'],[5,1,'k'],[5,2,'k']]),// 5 ついばむ
+  birdEdit([[4,0,'.'],[4,1,'.'],[3,0,'k'],[3,1,'k'],[3,2,'k']]),          // 6 首かしげ左
+  birdEdit([[4,0,'.'],[4,1,'.'],[5,1,'k'],[5,2,'k'],[5,3,'k']]),          // 7 首かしげ右
+  birdEdit([[3,1,'k'],[3,2,'k'],[5,1,'k'],[5,2,'k'],[4,3,'.'],[4,4,'c']]),// 8 あくび
+  birdEdit([[4,4,'B'],[4,6,'e']]),                                        // 9 横を向く
+  birdEdit([[4,4,'B'],[3,4,'e']]),                                        // 10 上を見る
+  birdEdit([[3,9,'g'],[2,10,'g'],[4,9,'g'],[7,3,'g'],[6,2,'g'],[7,2,'g']]),// 11 飛ぶ1
+  birdEdit([[7,8,'g'],[8,8,'g'],[8,9,'g'],[7,2,'g'],[8,2,'g'],[8,3,'g']]),// 12 飛ぶ2
+  birdEdit([[10,4,'.'],[10,7,'.'],[10,5,'L'],[10,6,'L']]),                // 13 ぴょん
+  birdEdit([[4,0,'.'],[4,1,'.'],[4,2,'.'],[6,4,'k'],[6,5,'k'],[7,5,'k']]),// 14 毛づくろい
+];
+const BIRD_PETTED = birdEdit([[4,4,'c'],[3,3,'P'],[5,3,'P'],[1,9,'H'],[0,10,'H'],[1,10,'H'],[2,9,'H']]); // 撫でられ（ハート）
+const BIRD_TAB_ACTIONS = new Set([
+  'toggle-time','toggle-memo','toggle-settings','toggle-backup','toggle-star-filter',
+  'view-active','view-archived','memo-tab-time','memo-tab-span','toggle-orient',
+  'open-day','day-back','cal-prev','cal-next','cal-prev-month','cal-next-month',
+  'cal-prev-year','cal-next-year','cal-today',
+]);
+// assets/bird/ に画像を置くと、そちらに差し替わる（無ければ内蔵ドット絵SVGにフォールバック）。
+//   bird-01.png 〜 bird-13.png … 通常ポーズ（1分ごと／タブ操作でランダム）
+//   bird-14.png 〜 bird-24.png … 撫でられ差分（クリックでランダム・ある分だけ使う）
+const BIRD_IMG_BASE = 'assets/bird/';
+const BIRD_POSE_COUNT = 13;
+const BIRD_PET_FROM = 14, BIRD_PET_TO = 24;
+let birdPoses = [], birdPets = [], birdRevertTimer = null, birdInited = false;
+function birdTry(n, isPet){
+  const url = BIRD_IMG_BASE + 'bird-' + String(n).padStart(2,'0') + '.png';
+  const img = new Image();
+  img.onload = () => {
+    (isPet ? birdPets : birdPoses).push(url);
+    if(!birdInited && !isPet){ birdInited = true; birdRandom(); } // 最初の1枚が来たら表示
+  };
+  img.src = url;
+}
+function birdPreload(){
+  for(let n=1;n<=BIRD_POSE_COUNT;n++) birdTry(n, false);
+  for(let n=BIRD_PET_FROM;n<=BIRD_PET_TO;n++) birdTry(n, true);
+}
+function birdShowURL(url){
+  const el = document.getElementById('birdChar'); if(!el) return;
+  const img = new Image(); img.className = 'bird-img'; img.alt = 'hummingbird'; img.src = url;
+  el.innerHTML = ''; el.appendChild(img);
+}
+function birdShowSVG(grid){ const el = document.getElementById('birdChar'); if(el) el.innerHTML = birdGridToSVG(grid); }
+function birdRandom(){
+  if(birdPoses.length) birdShowURL(birdPoses[Math.floor(Math.random()*birdPoses.length)]);
+  else birdShowSVG(BIRD_FRAMES[Math.floor(Math.random()*13)]);
+}
+function birdPet(){
+  if(birdPets.length) birdShowURL(birdPets[Math.floor(Math.random()*birdPets.length)]); // 撫でられをランダム
+  else birdShowSVG(BIRD_PETTED);
+  clearTimeout(birdRevertTimer);
+  birdRevertTimer = setTimeout(birdRandom, 2600);
+}
+function birdOnTab(act){ if(BIRD_TAB_ACTIONS.has(act)){ clearTimeout(birdRevertTimer); setTimeout(birdRandom, 40); } }
+
+(function initBird(){
+  const el = document.createElement('div');
+  el.className = 'bird-char'; el.id = 'birdChar'; el.title = 'クリックでなでなで';
+  document.body.appendChild(el);
+  birdRandom();      // まずフォールバックを表示
+  birdPreload();     // 画像があれば検出して差し替え
+  el.addEventListener('click', birdPet);
+  setInterval(birdRandom, 60000); // 1分ごとにランダム差分
 })();
 </script>
 </body>
